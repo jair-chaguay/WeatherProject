@@ -10,6 +10,54 @@ import ControlPanel from './components/ControlPane';
 
 function App() {
 
+  let [indicators, setIndicators] = useState([])
+
+  let [rowsTable, setRowsTable] = useState([])
+
+
+
+  {/* Hook: useEffect */ }
+  useEffect(() => {
+
+
+    (async () => {
+      //{/*Request*/ }
+
+      //let API_KEY = "7d5b35ef3709fb6f65c7a469d07be9af"
+      //let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Guayaquil&mode=xml&appid=${API_KEY}`)
+      //let savedTextXML = await response.text();
+
+
+
+
+      let savedTextXML = localStorage.getItem("openWeatherMap")
+      let expiringTime = localStorage.getItem("expiringTime")
+
+      let nowTime = (new Date()).getTime();
+
+      if (expiringTime === null || nowTime > parseInt(expiringTime)) {
+        let API_KEY = "7d5b35ef3709fb6f65c7a469d07be9af"
+        let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Guayaquil&mode=xml&appid=${API_KEY}`)
+        savedTextXML = await response.text();
+
+        let hours = 1
+        let delay = hours * 3600000
+
+        localStorage.setItem("openWeatherMap", savedTextXML)
+        localStorage.setItem("expiringTime", (nowTime + delay).toString())
+
+      }
+      {/*XML Parser*/ }
+
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(savedTextXML, "application/xml");
+
+      {/* Arreglo para agregar los resultados */ }
+
+      let dataToIndicators = new Array()
+
+      {/* 
+          Análisis, extracción y almacenamiento del contenido del XML 
           en el arreglo de resultados
       */}
 
