@@ -50,7 +50,7 @@ function App() {
       {/*XML Parser*/ }
 
       const parser = new DOMParser();
-      const xml = parser.parseFromString(savedTextXML, "application/xml");
+      const xml = parser.parseFromString(savedTextXML!, "application/xml");
 
       {/* Arreglo para agregar los resultados */ }
 
