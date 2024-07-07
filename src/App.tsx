@@ -8,11 +8,16 @@ import WeatherChart from './components/WeatherChart';
 import ControlPanel from './components/ControlPane';
 
 
+interface Row {
+  rangeHours: string;
+  windDirection: string;
+}
+
 function App() {
 
   let [indicators, setIndicators] = useState<JSX.Element[]>([]);
 
-  let [rowsTable, setRowsTable] = useState([]);
+  let [rowsTable, setRowsTable] = useState<Row[]>([]);
 
 
 
