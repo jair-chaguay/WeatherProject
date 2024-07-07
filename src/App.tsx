@@ -85,7 +85,7 @@ function App() {
       setIndicators(indicatorsElements)
 
       let arrayObjects = Array.from(xml.getElementsByTagName("time")).map((timeElement) => {
-        let rangeHours = timeElement.getAttribute("from").split("T")[1] + " - " + timeElement.getAttribute("to").split("T")[1]
+        let rangeHours = timeElement.getAttribute("from")?.split("T")[1] + " - " + timeElement.getAttribute("to")?.split("T")[1]
         let windDirection = timeElement.getElementsByTagName("windDirection")[0].getAttribute("deg") + " " + timeElement.getElementsByTagName("windDirection")[0].getAttribute("code")
         return { "rangeHours": rangeHours, "windDirection": windDirection }
       })
