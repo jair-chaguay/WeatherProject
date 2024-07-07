@@ -10,9 +10,9 @@ import ControlPanel from './components/ControlPane';
 
 function App() {
 
-  let [indicators, setIndicators] = useState([])
+  let [indicators, setIndicators] = useState<JSX.Element[]>([]);
 
-  let [rowsTable, setRowsTable] = useState([])
+  let [rowsTable, setRowsTable] = useState([]);
 
 
 
