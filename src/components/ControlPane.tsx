@@ -7,7 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-export default function ControlPanel() {
+export default function ControlPane({onChange}) {
 
     {/* Variable de estado y función de actualización */ }
 
@@ -17,14 +17,8 @@ export default function ControlPanel() {
 
     const descriptionRef = useRef<HTMLDivElement>(null);
 
-    {/*Datos de los elementos del Select*/ }
-    let items = [
-        { "name": "Precipitación", "description": "Cantidad de agua, en forma de lluvia, nieve o granizo, que cae sobre una superficie en un período específico." },
-        { "name": "Humedad", "description": "Cantidad de vapor de agua presente en el aire, generalmente expresada como un porcentaje." },
-        { "name": "Nubosidad", "description": "Grado de cobertura del cielo por nubes, afectando la visibilidad y la cantidad de luz solar recibida." }
-    ]
+    
 
-    let options = items.map((item, key) => <MenuItem key={key} value={key}>{item["name"]}</MenuItem>)
 
      {/* Manejador de eventos */}
 
@@ -36,10 +30,34 @@ export default function ControlPanel() {
         {/* Modificación de la referencia */}
 
         if (descriptionRef.current !== null) {
-            descriptionRef.current.innerHTML = (idx >= 0) ? items[idx]["description"] : ""
+            descriptionRef.current.innerHTML = (idx >= 0) ? items[idx]["description"] : "";
         }
 
+        onChange(idx);
+
     };
+
+    {/*Datos de los elementos del Select*/ }
+    let items = [
+        {
+          name: "Precipitación",
+          description:
+            "Cantidad de agua, en forma de lluvia, nieve o granizo, que cae sobre una superficie en un período específico.",
+        },
+        {
+          name: "Humedad",
+          description:
+            "Cantidad de vapor de agua presente en el aire, generalmente expresada como un porcentaje.",
+        },
+        {
+          name: "Nubosidad",
+          description:
+            "Grado de cobertura del cielo por nubes, afectando la visibilidad y la cantidad de luz solar recibida.",
+        },
+      ];
+
+      let options = items.map((item, key) => <MenuItem key={key} value={key}>{item["name"]}</MenuItem>)
+
 
     {/* JSX */ }
 
