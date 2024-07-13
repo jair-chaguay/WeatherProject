@@ -52,6 +52,8 @@ export default function WeatherChart({ selectedVariable, graficos }: Config) {
         p: 2,
         display: "flex",
         flexDirection: "column",
+        borderRadius:"20px",
+             
       }}
     >
       <Chart
