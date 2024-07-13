@@ -1,8 +1,13 @@
+import React from 'react';
 import "./App.css";
+import Toolbar from '@mui/material/Toolbar';
 import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import Indicator from "./components/Indicator";
 import BasicTable from "./components/BasicTable";
 import WeatherChart from "./components/WeatherChart";
+import Variable from "./components/Variable";
+import Grafico from "./components/Grafico"
+import TablaDatos from "./components/TablaDatos"
 import ControlPanel from "./components/ControlPane";
 import { useEffect, useState } from "react";
 import Sidebar from "./components/Sidebar";
@@ -92,7 +97,7 @@ function App() {
         let longitude = location.getAttribute("longitude");
         dataToIndicators.push(["Longitude", "Longitude", longitude]);
 
-        let altitude= location.getAttribute("altitude");
+        let altitude = location.getAttribute("altitude");
         dataToIndicators.push(["Altitude", "Altitude", altitude])
       } else {
         console.error("Location element not found in XML");
@@ -123,9 +128,9 @@ function App() {
         let windDirection = timeElement.getElementsByTagName("windDirection")[0].getAttribute("deg") + " " + timeElement.getElementsByTagName("windDirection")[0].getAttribute("code");
         let pressure = timeElement.getElementsByTagName("pressure")[0].getAttribute("value");
         let humidity = timeElement.getElementsByTagName("humidity")[0].getAttribute("value");
-        let temperature= timeElement.getElementsByTagName("temperature")[0].getAttribute("value")
+        let temperature = timeElement.getElementsByTagName("temperature")[0].getAttribute("value")
         let clouds = timeElement.getElementsByTagName("clouds")[0].getAttribute("all");
-        return { "rangeHours": rangeHours, "windDirection": windDirection, "pressure": pressure,"temperature":temperature, "humidity": humidity, "clouds": clouds }
+        return { "rangeHours": rangeHours, "windDirection": windDirection, "pressure": pressure, "temperature": temperature, "humidity": humidity, "clouds": clouds }
 
       })
 
@@ -179,7 +184,7 @@ function App() {
 
   return (
     <>
-      <div className="app">
+      <div className="app" id='app'>
         <Sidebar />
         <Grid container spacing={5}>
           <Grid xs={12} lg={12}>
@@ -205,13 +210,17 @@ function App() {
           <Grid xs={4} lg={3}>
             {indicators[3]}
           </Grid>
-          <Grid xs={12} md={12} lg={12}>
+          
+          <Grid xs={12} md={12} lg={12} id='variable'>
+            <Variable/>
             <ControlPanel onChange={setSelectedVariable} />
           </Grid>
-          <Grid xs={12} md={12} lg={12}>
+          <Grid xs={12} md={12} lg={12} id='graph'>
+            <Grafico/>
             <WeatherChart selectedVariable={selectedVariable} graficos={infoGraphic}></WeatherChart>
           </Grid>
-          <Grid xs={12} md={6} lg={12}>
+          <Grid xs={12} md={6} lg={12} id='data_Table'>
+            <TablaDatos/>
             <BasicTable rows={rowsTable}></BasicTable>
           </Grid>
         </Grid>

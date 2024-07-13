@@ -1,3 +1,4 @@
+import React from 'react';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -24,11 +25,17 @@ export default function Sidebar() {
       }}
     >
       <List>
-        <ListItem button onClick={() => handleNavigation('home')}>
+        <ListItem button onClick={() => handleNavigation('app')}>
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button onClick={() => handleNavigation('weatherChart')}>
-          <ListItemText primary="Gráfico Clima" />
+        <ListItem button onClick={() => handleNavigation('variable')}>
+          <ListItemText primary="Variables Meteorológicas" />
+        </ListItem>
+        <ListItem button onClick={() => handleNavigation('graph')}>
+          <ListItemText primary="Gráfico Precipitación, Humedad y Nubosidad" />
+        </ListItem>
+        <ListItem button onClick={() => handleNavigation('data_Table')}>
+          <ListItemText primary="Tabla de datos" />
         </ListItem>
         
       </List>
