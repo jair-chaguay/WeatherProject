@@ -1,6 +1,4 @@
-import React from 'react';
 import "./App.css";
-import Toolbar from '@mui/material/Toolbar';
 import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
 import Indicator from "./components/Indicator";
 import BasicTable from "./components/BasicTable";

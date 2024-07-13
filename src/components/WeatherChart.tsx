@@ -1,4 +1,3 @@
-import React from 'react';
 import { Chart } from "react-google-charts";
 import Paper from "@mui/material/Paper";
 import { useEffect, useState } from "react";
